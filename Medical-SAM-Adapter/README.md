@@ -1,5 +1,5 @@
 <h1 align="center">● 原始 Medical SAM Adapter </h1>
-
+- 已不是原始的code
 <p align="center">
     <a href="https://discord.gg/DN4rvk95CC">
         <img alt="Discord" src="https://img.shields.io/discord/1146610656779440188?logo=discord&style=flat&logoColor=white"/></a>
