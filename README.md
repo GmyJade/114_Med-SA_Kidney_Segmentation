@@ -4,7 +4,6 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 ## 📋 目錄
 
 - [專案簡介](#-專案簡介)
-- [環境需求](#-環境需求)
 - [安裝方式](#-安裝方式)
 - [資料集下載](#-資料集下載)
 - [專案架構](#-專案架構)
@@ -18,16 +17,6 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 <!-- 請在此說明這個專案的目標、使用的方法或模型（例如 U-Net、nnU-Net 等）、以及預期解決的問題 -->
 
----
-
-
-## 🖥️ 環境需求
-
-- Python 3.10.6
-- Ubuntu 20.04 / 22.04
-- CUDA 11.x（若使用 GPU）
-- Conda（用於建立虛擬環境）
-- 相依套件詳見 `Medical-SAM-Adapter/environment.yml`
 
 ---
 
@@ -36,7 +25,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 ### 1. Clone 本專案
 
 ```bash
-git clone https://github.com/你的帳號/你的專案名稱.git
+git clone https://github.com/GmyJade/114_Med-SA_Kidney_Segmentation.git
 cd 114_Med-SA_Kidney_Segmentation/Medical-SAM-Adapter
 ```
 
