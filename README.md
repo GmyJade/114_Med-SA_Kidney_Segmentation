@@ -78,7 +78,8 @@ kits23_download_data
 ### 執行轉換腳本
 
 ```bash
-python prepare_dataset.py
+cd 114_Med-SA_Kidney_Segmentation
+python prepare_kits23_dataset.py
 ```
 
 腳本會自動完成以下工作：
