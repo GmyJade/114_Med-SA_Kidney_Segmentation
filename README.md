@@ -1,2 +1,182 @@
 # 114 Med-SA Kidney Segmentation
 A medical image segmentation project for kidney region analysis using Med-SA.
+
+## 📋 目錄
+
+- [專案簡介](#-專案簡介)
+- [環境需求](#-環境需求)
+- [安裝方式](#-安裝方式)
+- [資料集下載](#-資料集下載)
+- [專案架構](#-專案架構)
+- [使用方式](#-使用方式)
+- [實驗結果](#-實驗結果)
+- [參考資料](#-參考資料)
+
+---
+
+## 📌 專案簡介
+
+<!-- 請在此說明這個專案的目標、使用的方法或模型（例如 U-Net、nnU-Net 等）、以及預期解決的問題 -->
+
+---
+
+## 🖥️ 環境需求
+
+<!-- 請填入你的開發環境，例如： -->
+
+- Python 3.10.6
+- Ubuntu 20.04（或 22.04）
+- CUDA 11.x（若使用 GPU）
+- 相依套件詳見 `requirements.txt`
+
+---
+
+## ⚙️ 安裝方式
+
+```bash
+# 1. Clone 本專案
+git clone https://github.com/你的帳號/你的專案名稱.git
+cd 你的專案名稱
+
+# 2. 安裝相依套件（若有）
+pip install -r requirements.txt
+```
+
+---
+
+## 📦 資料集下載
+
+本專案使用 [KiTS23](https://github.com/neheller/kits23) 資料集進行腎臟影像分割實驗。
+由於資料集檔案較大，不直接包含於此 repository，請依以下步驟自行下載。
+
+### 安裝 KiTS23 官方套件
+
+```bash
+git clone https://github.com/neheller/kits23
+cd kits23
+pip3 install -e .
+```
+
+### 下載資料
+
+安裝完成後，執行以下指令，資料集將自動下載至 `dataset/` 資料夾：
+
+```bash
+kits23_download_data
+```
+
+> **注意事項**
+> - 官方建議使用 Python 3.10.6 與 Ubuntu 環境
+> - 本專案不包含原始資料集，請依 [KiTS23 官方說明](https://github.com/neheller/kits23) 自行下載
+
+---
+
+## 🔧 資料集前處理
+
+下載完成後，需將 KiTS23 的原始格式轉換為 Medical-SAM-Adapter 可讀取的結構，並自動生成 `dataset.json`。
+
+### 執行轉換腳本
+
+```bash
+cd 114_Med-SA_Kidney_Segmentation
+python prepare_kits23_dataset.py
+```
+
+腳本會自動完成以下工作：
+
+| 步驟 | 說明 |
+|------|------|
+| 建立資料夾 | 在目標路徑建立 `imagesTr/` 與 `labelsTr/` |
+| 複製影像 | 將 `imaging.nii.gz` 複製並重新命名至 `imagesTr/` |
+| 複製標籤 | 將 `segmentation.nii.gz` 複製並重新命名至 `labelsTr/` |
+| 生成 JSON | 自動切分訓練／驗證集，輸出 `dataset.json` |
+
+### 預設路徑設定
+
+請確認 `prepare_dataset.py` 頂部的路徑設定與你的環境一致：
+
+```python
+source_dir = "./kits23/dataset"          # KiTS23 原始資料位置
+target_dir = "./dataset/KiTS23_for_MSA"  # 輸出目標位置
+```
+
+### 輸出結構
+
+轉換完成後，目標資料夾結構如下：
+
+```
+dataset/KiTS23_for_MSA/
+├── imagesTr/
+│   ├── case_00000.nii.gz
+│   ├── case_00001.nii.gz
+│   └── ...
+├── labelsTr/
+│   ├── case_00000.nii.gz
+│   ├── case_00001.nii.gz
+│   └── ...
+└── dataset.json
+```
+
+### 標籤定義
+
+| Label ID | 類別 |
+|----------|------|
+| 0 | Background（背景） |
+| 1 | Kidney（腎臟） |
+| 2 | Tumor（腫瘤） |
+| 3 | Cyst（囊腫） |
+
+> **注意事項**
+> - 預設將最後 **10 筆**作為驗證集，其餘為訓練集，可在腳本內調整 `val_count`
+> - 若目標檔案已存在則自動跳過，重複執行不會覆蓋
+
+---
+
+## 🗂️ 專案架構
+
+<!-- 可以用 tree 指令產生後貼上，例如：
+
+```
+專案名稱/
+├── dataset/          # 資料集放置位置（不含於 repo）
+├── src/              # 主要程式碼
+├── configs/          # 設定檔
+├── notebooks/        # Jupyter notebooks（若有）
+├── requirements.txt
+└── README.md
+```
+-->
+
+---
+
+## 🚀 使用方式
+
+<!-- 說明如何執行訓練、測試、推論等，例如：
+
+```bash
+# 訓練
+python train.py --config configs/default.yaml
+
+# 測試
+python test.py --checkpoint checkpoints/best.pth
+```
+-->
+
+---
+
+## 📊 實驗結果
+
+<!-- 可以放表格、截圖或指標數值，例如：
+
+| 模型 | Dice Score | HD95 |
+|------|-----------|------|
+| U-Net | 0.xx | xx |
+| nnU-Net | 0.xx | xx |
+-->
+
+---
+
+## 📚 參考資料
+
+- [KiTS23 官方 GitHub](https://github.com/neheller/kits23)
+- <!-- 其他參考論文或連結 -->
