@@ -71,6 +71,66 @@ kits23_download_data
 
 ---
 
+## 🔧 資料集前處理
+
+下載完成後，需將 KiTS23 的原始格式轉換為 Medical-SAM-Adapter 可讀取的結構，並自動生成 `dataset.json`。
+
+### 執行轉換腳本
+
+```bash
+python prepare_dataset.py
+```
+
+腳本會自動完成以下工作：
+
+| 步驟 | 說明 |
+|------|------|
+| 建立資料夾 | 在目標路徑建立 `imagesTr/` 與 `labelsTr/` |
+| 複製影像 | 將 `imaging.nii.gz` 複製並重新命名至 `imagesTr/` |
+| 複製標籤 | 將 `segmentation.nii.gz` 複製並重新命名至 `labelsTr/` |
+| 生成 JSON | 自動切分訓練／驗證集，輸出 `dataset.json` |
+
+### 預設路徑設定
+
+請確認 `prepare_dataset.py` 頂部的路徑設定與你的環境一致：
+
+```python
+source_dir = "./kits23/dataset"          # KiTS23 原始資料位置
+target_dir = "./dataset/KiTS23_for_MSA"  # 輸出目標位置
+```
+
+### 輸出結構
+
+轉換完成後，目標資料夾結構如下：
+
+```
+dataset/KiTS23_for_MSA/
+├── imagesTr/
+│   ├── case_00000.nii.gz
+│   ├── case_00001.nii.gz
+│   └── ...
+├── labelsTr/
+│   ├── case_00000.nii.gz
+│   ├── case_00001.nii.gz
+│   └── ...
+└── dataset.json
+```
+
+### 標籤定義
+
+| Label ID | 類別 |
+|----------|------|
+| 0 | Background（背景） |
+| 1 | Kidney（腎臟） |
+| 2 | Tumor（腫瘤） |
+| 3 | Cyst（囊腫） |
+
+> **注意事項**
+> - 預設將最後 **10 筆**作為驗證集，其餘為訓練集，可在腳本內調整 `val_count`
+> - 若目標檔案已存在則自動跳過，重複執行不會覆蓋
+
+---
+
 ## 🗂️ 專案架構
 
 <!-- 可以用 tree 指令產生後貼上，例如：
