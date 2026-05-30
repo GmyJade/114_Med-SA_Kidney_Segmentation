@@ -20,26 +20,53 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 ---
 
+
 ## 🖥️ 環境需求
 
-<!-- 請填入你的開發環境，例如： -->
-
 - Python 3.10.6
-- Ubuntu 20.04（或 22.04）
+- Ubuntu 20.04 / 22.04
 - CUDA 11.x（若使用 GPU）
-- 相依套件詳見 `requirements.txt`
+- Conda（用於建立虛擬環境）
+- 相依套件詳見 `Medical-SAM-Adapter/environment.yml`
 
 ---
 
 ## ⚙️ 安裝方式
 
-```bash
-# 1. Clone 本專案
-git clone https://github.com/你的帳號/你的專案名稱.git
-cd 你的專案名稱
+### 1. Clone 本專案
 
-# 2. 安裝相依套件（若有）
-pip install -r requirements.txt
+```bash
+git clone https://github.com/你的帳號/你的專案名稱.git
+cd 114_Med-SA_Kidney_Segmentation/Medical-SAM-Adapter
+```
+
+### 2. 建立 Conda 環境
+
+```bash
+conda env create -f environment.yml
+conda activate sam_adapt
+```
+
+### 3. 下載 SAM 模型權重
+
+本專案使用 [Segment Anything Model (SAM)](https://github.com/facebookresearch/segment-anything) 的預訓練權重。
+
+```bash
+# 下載權重檔案
+wget https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth
+
+# 建立資料夾並移動檔案
+mkdir -p ./checkpoint/sam
+mv sam_vit_b_01ec64.pth ./checkpoint/sam/
+```
+
+完成後，確認檔案位於以下路徑：
+
+```
+Medical-SAM-Adapter/
+└── checkpoint/
+    └── sam/
+        └── sam_vit_b_01ec64.pth
 ```
 
 ---
