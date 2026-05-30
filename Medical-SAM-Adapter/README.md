@@ -1,4 +1,4 @@
-<h1 align="center">● Medical SAM Adapter</h1>
+<h1 align="center">● 原始 Medical SAM Adapter 程式碼已更新</h1>
 
 <p align="center">
     <a href="https://discord.gg/DN4rvk95CC">
