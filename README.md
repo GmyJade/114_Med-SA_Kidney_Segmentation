@@ -26,7 +26,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 ```bash
 git clone https://github.com/GmyJade/114_Med-SA_Kidney_Segmentation.git
-cd 114_Med-SA_Kidney_Segmentation/Medical-SAM-Adapter
+cd 114_Med-SA_Kidney_Segmentation/Medical_SAM_Adapter_Coronal
 ```
 
 ### 2. 建立 Conda 環境
@@ -52,12 +52,11 @@ mv sam_vit_b_01ec64.pth ./checkpoint/sam/
 完成後，確認檔案位於以下路徑：
 
 ```
-Medical-SAM-Adapter/
+Medical_SAM_Adapter_Coronal/
 └── checkpoint/
     └── sam/
         └── sam_vit_b_01ec64.pth
 ```
-
 ---
 
 ## 📦 資料集下載
