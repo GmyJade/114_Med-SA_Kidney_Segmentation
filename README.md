@@ -23,7 +23,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 整體而言，本研究建立了一套結合三切面分割與最大面積切片判定的醫學影像分析流程，具備輔助臨床量化分析與後續系統擴充之應用潛力。
 
-> **注意**：本專案以 **coronal 切面**為實作範例。如需使用 axial 或 sagittal 切面，可參考相同架構自行調整資料載入與訓練設定。
+> **注意**：本專案以 **coronal 切面** 與 **KiTS23資料集**為實作範例。如需使用 axial 或 sagittal 切面，可參考相同架構自行調整資料載入與訓練設定。
 
 
 ---
