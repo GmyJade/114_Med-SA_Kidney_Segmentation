@@ -6,6 +6,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 - [專案簡介](#-專案簡介)
 - [安裝方式](#-安裝方式)
 - [資料集下載](#-資料集下載)
+- [資料集前處理](#-資料集前處理)
 - [專案架構](#-專案架構)
 - [使用方式](#-使用方式)
 - [實驗結果](#-實驗結果)
@@ -250,8 +251,8 @@ python kits23_nifti_viewer.py
 > **注意**：訓練參數（batch size、epoch 數、learning rate 等）請依實際執行環境與 `train_kits23_coronal.sh` 內容調整。
 ---
 
-## 📊 KiTS23 實驗結果
-
+## 📊 實驗結果
+> 以下結果基於 KiTS23 資料集，訓練 500 epochs。
 ### 訓練曲線（Training Loss & Validation Metrics）
 
 以下為三個切面於 KiTS23 資料集上訓練 500 epochs 的 Loss 與驗證指標曲線：
