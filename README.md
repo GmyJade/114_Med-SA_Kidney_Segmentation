@@ -3,17 +3,17 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 ## 📋 目錄
 
-- [專案簡介](#-專案簡介)
-- [安裝方式](#-安裝方式)
-- [資料集下載](#-資料集下載)
-- [資料集前處理](#-資料集前處理)
-- [專案架構](#-專案架構)
-- [使用方式](#-使用方式)
-- [實驗結果](#-實驗結果)
-- [參考資料](#-參考資料)
+- [專案簡介](#專案簡介)
+- [安裝方式](#安裝方式)
+- [資料集下載](#資料集下載)
+- [資料集前處理](#資料集前處理)
+- [專案架構](#專案架構)
+- [使用方式](#使用方式)
+- [實驗結果](#實驗結果)
+- [參考資料](#參考資料)
 
 ---
-
+<a name="專案簡介"></a>
 ## 📌 專案簡介
 
 本研究以醫學影像分割為主題，針對腹部 CT 影像中的腎臟相關區域進行自動化分割與量化分析。為改善 SAM 直接應用於醫學影像時適應能力不足的問題，本研究採用 Med-SA-Adapter 作為核心模型，透過 Adapter-based fine-tuning 降低模型微調成本，並提升其對醫學影像特徵的學習能力。
@@ -29,6 +29,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 ---
 
+<a name="安裝方式"></a>
 ## ⚙️ 安裝方式
 
 ### 1. Clone 本專案
@@ -68,6 +69,7 @@ Medical_SAM_Adapter_Coronal/
 ```
 ---
 
+<a name="資料集下載"></a>
 ## 📦 資料集下載
 
 本專案使用 [KiTS23](https://github.com/neheller/kits23) 資料集進行腎臟影像分割實驗。
@@ -95,6 +97,7 @@ kits23_download_data
 
 ---
 
+<a name="資料集前處理"></a>
 ## 🔧 資料集前處理
 
 下載完成後，需將 KiTS23 的原始格式轉換為 Medical-SAM-Adapter 可讀取的結構，並自動生成 `dataset.json`。
@@ -155,7 +158,7 @@ dataset/KiTS23_for_MSA/
 > - 若目標檔案已存在則自動跳過，重複執行不會覆蓋
 
 ---
-
+<a name="專案架構"></a>
 ## 🗂️ 專案架構
 
 ```
@@ -186,6 +189,8 @@ dataset/KiTS23_for_MSA/
 
 ---
 
+
+<a name="使用方式"></a>
 ## 🚀 使用方式
 
 ### 訓練
@@ -250,7 +255,7 @@ python kits23_nifti_viewer.py
 
 > **注意**：訓練參數（batch size、epoch 數、learning rate 等）請依實際執行環境與 `train_kits23_coronal.sh` 內容調整。
 ---
-
+<a name="實驗結果"></a>
 ## 📊 實驗結果
 > 以下結果基於 KiTS23 資料集，訓練 500 epochs。
 ### 訓練曲線（Training Loss & Validation Metrics）
@@ -297,9 +302,8 @@ python kits23_nifti_viewer.py
 <img width="3932" height="2030" alt="圖片5" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
 
 ---
-
+<a name="參考資料"></a>
 ## 📚 參考資料
-
 ### 資料集
 - [KiTS23 官方 GitHub](https://github.com/neheller/kits23)
 - [Synapse BTCV Dataset](https://www.synapse.org/Synapse:syn3193805/files/)
