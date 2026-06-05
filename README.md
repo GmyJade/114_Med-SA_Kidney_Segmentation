@@ -252,17 +252,57 @@ python kits23_nifti_viewer.py
 
 ## 📊 實驗結果
 
-<!-- 可以放表格、截圖或指標數值，例如：
+## 📊 實驗結果
 
-| 模型 | Dice Score | HD95 |
-|------|-----------|------|
-| U-Net | 0.xx | xx |
-| nnU-Net | 0.xx | xx |
--->
+### 訓練曲線（Training Loss & Validation Metrics）
 
+以下為三個切面於 KiTS23 資料集上訓練 500 epochs 的 Loss 與驗證指標曲線：
+
+| 切面 | Best Dice | Best Dice Epoch | Best IoU | Best IoU Epoch |
+|------|-----------|-----------------|----------|----------------|
+| Axial | 0.9481 | 466 | 0.9016 | 465 |
+| Coronal | 0.9233 | 256 | 0.8708 | 415 |
+| Sagittal | 0.9174 | 391 | 0.8680 | 410 |
+
+![Training Curves](./Medical_SAM_Adapter_Coronal/figs/training_curves.png)
+
+---
+
+### Maximum Slice Area 最大面積切片結果
+
+根據 prediction mask 自動找出各切面面積最大的代表性切片，並與 Ground Truth 進行比對：
+
+| 切面 | Epoch | Dice | IoU | 預測面積 (mm²) | GT 面積 (mm²) |
+|------|-------|------|-----|----------------|---------------|
+| Axial | 466 | 0.8991 | 0.9258 | 8991.7 | 8469.2 |
+| Coronal | 256 | 0.9466 | 0.9633 | 11600.9 | 11575.8 |
+| Sagittal | 391 | 0.9361 | 0.9585 | 5058.4 | 4942.8 |
+
+![Maximum Slice Area](./Medical_SAM_Adapter_Coronal/figs/max_slice_area.png)
+
+---
+
+### 分割結果視覺化（TP / FN / FP）
+
+下圖以顏色標示各區域的分割正確性，三個切面皆能有效分割腎臟區域，主要錯誤集中於邊緣區域的 FN（漏分）與少量 FP（誤分）：
+
+| 顏色 | 意義 |
+|------|------|
+| 🟩 綠色（TP） | 正確分割的腎臟區域 |
+| 🟦 藍色（FN） | 漏分的腎臟區域 |
+| 🟥 紅色（FP） | 誤判為腎臟的背景區域 |
+| 🟨 黃色（GT） | Ground Truth 腎臟位置 |
+
+![Segmentation Visualization](./Medical_SAM_Adapter_Coronal/figs/segmentation_visualization.png)
 ---
 
 ## 📚 參考資料
 
+### 資料集
 - [KiTS23 官方 GitHub](https://github.com/neheller/kits23)
-- <!-- 其他參考論文或連結 -->
+- [Synapse BTCV Dataset](https://www.synapse.org/Synapse:syn3193805/files/)
+- [KiTS23 Challenge 官網](https://kits-challenge.org/kits23/)
+
+### 論文
+- [Segment Anything (SAM)](https://arxiv.org/abs/2304.02643) — Kirillov et al., ICCV 2023
+- [Medical SAM Adapter](https://doi.org/10.1016/j.media.2025.103547) — Wu et al., Medical Image Analysis 2025
