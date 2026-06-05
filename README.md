@@ -261,22 +261,8 @@ python kits23_nifti_viewer.py
 | Axial | 0.9481 | 466 | 0.9016 | 465 |
 | Coronal | 0.9233 | 256 | 0.8708 | 415 |
 | Sagittal | 0.9174 | 391 | 0.8680 | 410 |
+<img width="4190" height="1274" alt="圖片3" src="https://github.com/user-attachments/assets/ecd146d2-7b2c-46d9-b2c8-b1fd6eac18e5" />
 
-![Training Curves](./Medical_SAM_Adapter_Coronal/figs/training_curves.png)
-
----
-
-### Maximum Slice Area 最大面積切片結果
-
-根據 prediction mask 自動找出各切面面積最大的代表性切片，並與 Ground Truth 進行比對：
-
-| 切面 | Epoch | Dice | IoU | 預測面積 (mm²) | GT 面積 (mm²) |
-|------|-------|------|-----|----------------|---------------|
-| Axial | 466 | 0.8991 | 0.9258 | 8991.7 | 8469.2 |
-| Coronal | 256 | 0.9466 | 0.9633 | 11600.9 | 11575.8 |
-| Sagittal | 391 | 0.9361 | 0.9585 | 5058.4 | 4942.8 |
-
-![Maximum Slice Area](./Medical_SAM_Adapter_Coronal/figs/max_slice_area.png)
 
 ---
 
@@ -291,7 +277,21 @@ python kits23_nifti_viewer.py
 | 🟥 紅色（FP） | 誤判為腎臟的背景區域 |
 | 🟨 黃色（GT） | Ground Truth 腎臟位置 |
 
-![Segmentation Visualization](./Medical_SAM_Adapter_Coronal/figs/segmentation_visualization.png)
+<img width="4194" height="1851" alt="圖片4" src="https://github.com/user-attachments/assets/35f226cf-6e7a-4670-a135-7ac57defe4f7" />
+
+---
+
+### Maximum Slice Area 最大面積切片結果
+
+根據 prediction mask 自動找出各切面面積最大的代表性切片，並與 Ground Truth 進行比對：
+
+| 切面 | Epoch | Dice | IoU | 預測面積 (mm²) | GT 面積 (mm²) |
+|------|-------|------|-----|----------------|---------------|
+| Axial | 466 | 0.8991 | 0.9258 | 8991.7 | 8469.2 |
+| Coronal | 256 | 0.9466 | 0.9633 | 11600.9 | 11575.8 |
+| Sagittal | 391 | 0.9361 | 0.9585 | 5058.4 | 4942.8 |
+<img width="3932" height="2030" alt="圖片5" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
+
 ---
 
 ## 📚 參考資料
