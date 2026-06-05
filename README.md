@@ -16,13 +16,13 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 <a name="專案簡介"></a>
 ## 📌 專案簡介
 
-本研究以醫學影像分割為主題，針對腹部 CT 影像中的腎臟相關區域進行自動化分割與量化分析。為改善 SAM 直接應用於醫學影像時適應能力不足的問題，本研究採用 Med-SA-Adapter 作為核心模型，透過 Adapter-based fine-tuning 降低模型微調成本，並提升其對醫學影像特徵的學習能力。
+以醫學影像分割為主題，針對腹部 CT 影像中的腎臟相關區域進行自動化分割與量化分析。為改善 SAM 直接應用於醫學影像時適應能力不足的問題，採用 Med-SA-Adapter 作為核心模型，透過 Adapter-based fine-tuning 降低模型微調成本，並提升對醫學影像特徵的學習能力。
 
-為符合現有臨床常用之腎臟體積估算流程，並降低完整 3D volume training 對 GPU 記憶體與運算資源的需求，本研究改採 2D slice-based multi-planar strategy，將 3D CT volume 分別轉換為 **axial、coronal 與 sagittal** 三個方向的 2D slices 進行訓練與比較。實驗使用 KiTS23 與 BTCV 資料集，並以 Dice coefficient 與 IoU 評估模型分割表現。
+為符合臨床常用之腎臟體積估算流程，同時降低完整 3D volume training 對 GPU 記憶體與運算資源的需求，採用 2D slice-based multi-planar strategy，將 3D CT volume 分別轉換為 axial、coronal 與 sagittal 三個方向的 2D slices 進行訓練與比較。實驗使用 KiTS23 與 BTCV 資料集，並以 Dice coefficient 與 IoU 作為評估指標。
 
-此外，本研究提出 **Maximum Slice Area** 計算流程，根據 prediction mask 自動計算各切片之前景面積，找出目標區域面積最大的代表性切片，作為後續腎臟面積分析與體積估算的前置依據。實驗結果顯示，本研究流程能完成腎臟相關區域分割，並自動提供最大面積切片資訊，可降低人工逐張檢視 CT 影像的負擔。
+此外，建立 Maximum Slice Area 計算流程，根據 prediction mask 自動計算各切片之前景面積，找出目標區域面積最大的代表性切片，作為後續腎臟面積分析與體積估算的前置依據。實驗結果顯示，該流程能有效完成腎臟相關區域分割，並自動提供最大面積切片資訊，有助於降低人工逐張檢視 CT 影像的負擔。
 
-整體而言，本研究建立了一套結合三切面分割與最大面積切片判定的醫學影像分析流程，具備輔助臨床量化分析與後續系統擴充之應用潛力。
+整體而言，所提出的方法結合三切面分割與最大面積切片判定機制，建立完整的醫學影像分析流程，具備輔助臨床量化分析與後續系統擴充之應用潛力。
 
 > **注意**：本專案以 **coronal 切面**與**KiTS23資料集**為實作範例。如需使用其他切面，可參考相同架構自行調整資料載入與訓練設定。
 
