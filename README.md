@@ -252,8 +252,6 @@ python kits23_nifti_viewer.py
 
 ## 📊 實驗結果
 
-## 📊 實驗結果
-
 ### 訓練曲線（Training Loss & Validation Metrics）
 
 以下為三個切面於 KiTS23 資料集上訓練 500 epochs 的 Loss 與驗證指標曲線：
