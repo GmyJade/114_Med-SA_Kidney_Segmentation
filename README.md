@@ -233,7 +233,7 @@ python3 val.py \
 
 ### NIfTI 影像視覺化
 
-可使用內建的視覺化工具檢視原始影像或分割結果：
+可使用內建的視覺化工具檢視原始影像：
 
 ```bash
 python kits23_nifti_viewer.py
