@@ -149,18 +149,31 @@ dataset/KiTS23_for_MSA/
 
 ## 🗂️ 專案架構
 
-<!-- 可以用 tree 指令產生後貼上，例如：
-
 ```
-專案名稱/
-├── dataset/          # 資料集放置位置（不含於 repo）
-├── src/              # 主要程式碼
-├── configs/          # 設定檔
-├── notebooks/        # Jupyter notebooks（若有）
-├── requirements.txt
-└── README.md
+114_Med-SA_Kidney_Segmentation/
+├── prepare_kits23_data.py              # 將 KiTS23 原始資料轉換為 MSA 可讀格式
+├── kits23_nifti_viewer.py              # NIfTI 影像視覺化工具
+├── dataset/                            # 本地資料集目錄（未上傳至 GitHub）
+├── README.md
+├── LICENSE
+└── Medical_SAM_Adapter_Coronal/        # Med-SA-Adapter 核心實作
+    ├── train.py                        # 訓練腳本
+    ├── val.py                          # 驗證腳本
+    ├── function.py                     # 訓練與驗證函式
+    ├── cfg.py                          # 參數設定
+    ├── train_kits23_coronal.sh         # 訓練執行腳本（Shell）
+    ├── val_kits23_coronal.sh           # 驗證執行腳本（Shell）
+    ├── environment.yml                 # Conda 環境設定
+    ├── dataset/
+    │   └── kits.py                     # KiTS23 資料集載入器
+    ├── models/                         # 模型架構
+    ├── conf/                           # 全域設定檔
+    ├── checkpoint/                     # SAM 預訓練權重（未上傳）
+    ├── logs/                           # 訓練與驗證紀錄（未上傳）
+    ├── figs/                           # 架構圖與實驗圖表
+    ├── guidance/                       # Prompt guidance 相關
+    └── pytorch_ssim/                   # SSIM 損失函式模組
 ```
--->
 
 ---
 
