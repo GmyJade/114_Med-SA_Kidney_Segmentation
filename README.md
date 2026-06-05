@@ -191,12 +191,19 @@ bash train_kits23_coronal.sh
 或直接呼叫 Python 訓練腳本（可自行調整參數）：
 
 ```bash
-python train.py \
-    --data_path ../dataset/KiTS23_for_MSA \
-    --dataset kits \
-    --sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
-    --b 4 \
-    --epoch 100
+python3 train.py \
+    -net sam \
+    -mod sam_adpt \
+    -exp_name kits23_Med-SA_train_coronal_EPOCH_500 \
+    -encoder vit_b \
+    -sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
+    -image_size 1024 \
+    -b 2 \
+    -dataset kits \
+    -data_path "放實際的資料集路徑" \
+    -num_sample 4 \
+    -vis 5 \
+    -slice_plane coronal
 ```
 
 ### 驗證
@@ -208,11 +215,20 @@ bash val_kits23_coronal.sh
 或手動執行：
 
 ```bash
-python val.py \
-    --data_path ../dataset/KiTS23_for_MSA \
-    --dataset kits \
-    --sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
-    --weights ./logs/<your_checkpoint>.pth
+python3 val.py \
+    -net sam \
+    -mod sam_adpt \
+    -exp_name val_kits23_coronal_full_slices \
+    -encoder vit_b \
+    -sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
+    -weights "放自己訓練好的 best dice 權重" \
+    -image_size 1024 \
+    -b 2 \
+    -dataset kits \
+    -data_path "放實際的資料集路徑" \
+    -num_sample 4 \
+    -vis 1 \
+    -slice_plane coronal
 ```
 
 ### NIfTI 影像視覺化
