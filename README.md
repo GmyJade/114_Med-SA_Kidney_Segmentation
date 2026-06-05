@@ -15,8 +15,6 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 ## 📌 專案簡介
 
-## 📌 專案簡介
-
 本研究以醫學影像分割為主題，針對腹部 CT 影像中的腎臟相關區域進行自動化分割與量化分析。為改善 SAM 直接應用於醫學影像時適應能力不足的問題，本研究採用 Med-SA-Adapter 作為核心模型，透過 Adapter-based fine-tuning 降低模型微調成本，並提升其對醫學影像特徵的學習能力。
 
 為符合現有臨床常用之腎臟體積估算流程，並降低完整 3D volume training 對 GPU 記憶體與運算資源的需求，本研究改採 2D slice-based multi-planar strategy，將 3D CT volume 分別轉換為 axial、coronal 與 sagittal 三個方向的 2D slices 進行訓練與比較。實驗使用 KiTS23 與 BTCV 資料集，並以 Dice coefficient 與 IoU 評估模型分割表現。
