@@ -250,7 +250,7 @@ python kits23_nifti_viewer.py
 > **注意**：訓練參數（batch size、epoch 數、learning rate 等）請依實際執行環境與 `train_kits23_coronal.sh` 內容調整。
 ---
 
-## 📊 實驗結果
+## 📊 KiTS23 實驗結果
 
 ### 訓練曲線（Training Loss & Validation Metrics）
 
@@ -261,7 +261,9 @@ python kits23_nifti_viewer.py
 | Axial | 0.9481 | 466 | 0.9016 | 465 |
 | Coronal | 0.9233 | 256 | 0.8708 | 415 |
 | Sagittal | 0.9174 | 391 | 0.8680 | 410 |
-<img width="4190" height="1274" alt="圖片3" src="https://github.com/user-attachments/assets/ecd146d2-7b2c-46d9-b2c8-b1fd6eac18e5" />
+
+<img width="1260" height="396" alt="image" src="https://github.com/user-attachments/assets/c12069e2-26a5-4a98-beec-826273ac6db7" />
+三個切面皆達到穩定收斂，其中 axial 切面取得最高的 Dice 與 IoU 分數。
 
 
 ---
@@ -277,7 +279,8 @@ python kits23_nifti_viewer.py
 | 🟥 紅色（FP） | 誤判為腎臟的背景區域 |
 | 🟨 黃色（GT） | Ground Truth 腎臟位置 |
 
-<img width="4194" height="1851" alt="圖片4" src="https://github.com/user-attachments/assets/35f226cf-6e7a-4670-a135-7ac57defe4f7" />
+<img width="1280" height="582" alt="image" src="https://github.com/user-attachments/assets/699384ba-d137-46fb-9086-b7a337b1b98a" />
+
 
 ---
 
