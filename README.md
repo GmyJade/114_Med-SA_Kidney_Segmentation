@@ -179,17 +179,51 @@ dataset/KiTS23_for_MSA/
 
 ## 🚀 使用方式
 
-<!-- 說明如何執行訓練、測試、推論等，例如：
+### 訓練
+
+確認資料集已依照前處理步驟準備完畢後，進入核心目錄並執行訓練腳本：
 
 ```bash
-# 訓練
-python train.py --config configs/default.yaml
-
-# 測試
-python test.py --checkpoint checkpoints/best.pth
+cd Medical_SAM_Adapter_Coronal
+bash train_kits23_coronal.sh
 ```
--->
 
+或直接呼叫 Python 訓練腳本（可自行調整參數）：
+
+```bash
+python train.py \
+    --data_path ../dataset/KiTS23_for_MSA \
+    --dataset kits \
+    --sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
+    --b 4 \
+    --epoch 100
+```
+
+### 驗證
+
+```bash
+bash val_kits23_coronal.sh
+```
+
+或手動執行：
+
+```bash
+python val.py \
+    --data_path ../dataset/KiTS23_for_MSA \
+    --dataset kits \
+    --sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
+    --weights ./logs/<your_checkpoint>.pth
+```
+
+### NIfTI 影像視覺化
+
+可使用內建的視覺化工具檢視原始影像或分割結果：
+
+```bash
+python kits23_nifti_viewer.py
+```
+
+> **注意**：訓練參數（batch size、epoch 數、learning rate 等）請依實際執行環境與 `train_kits23_coronal.sh` 內容調整。
 ---
 
 ## 📊 實驗結果
