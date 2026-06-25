@@ -312,5 +312,3 @@ python kits23_nifti_viewer.py
 ### 論文
 - [Segment Anything (SAM)](https://arxiv.org/abs/2304.02643) — Kirillov et al., ICCV 2023
 - [Medical SAM Adapter](https://doi.org/10.1016/j.media.2025.103547) — Wu et al., Medical Image Analysis 2025
-
-OK
