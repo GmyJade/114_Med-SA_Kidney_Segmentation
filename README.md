@@ -272,7 +272,7 @@ python kits23_nifti_viewer.py
 > **注意**：訓練參數（batch size、epoch 數、learning rate 等）請依實際執行環境與 `train_kits23_coronal.sh` 內容調整。
 ---
 <a name="實驗結果"></a>
-## 📊 實驗結果
+## 📊 KIT23實驗結果
 > 以下結果基於 KiTS23 資料集，訓練 500 epochs。
 ### 訓練曲線（Training Loss & Validation Metrics）
 
@@ -317,7 +317,7 @@ python kits23_nifti_viewer.py
 | Sagittal | 391 | 0.9361 | 0.9585 | 5058.4 | 4942.8 |
 <img width="3932" height="2030" alt="圖片5" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
 
-## 📊 實驗結果
+## 📊 BTCV實驗結果
 > 以下結果基於 BTCV 資料集，訓練 500 epochs。
 
 ### 訓練曲線（Training Loss & Validation Metrics）
@@ -332,7 +332,8 @@ python kits23_nifti_viewer.py
 | Coronal | 0.9056 | 0.8291 | 465 |
 | Sagittal | 0.8975 | 0.8147 | 475 |
 
-<img width="1260" height="396" alt="右腎訓練曲線" src="https://github.com/user-attachments/assets/c12069e2-26a5-4a98-beec-826273ac6db7" />
+<img width="1016" height="306" alt="螢幕擷取畫面 2026-08-01 072555" src="https://github.com/user-attachments/assets/263a8c82-79f3-4825-9dbc-dc3ace467e6d" />
+
 
 #### 2. 左腎（Left Kidney）
 
@@ -342,24 +343,9 @@ python kits23_nifti_viewer.py
 | Coronal | 0.9196 | 0.8864 | 470 |
 | Sagittal | 0.9053 | 0.8611 | 360 |
 
-<img width="1260" height="396" alt="左腎訓練曲線" src="https://github.com/user-attachments/assets/c12069e2-26a5-4a98-beec-826273ac6db7" />
+<img width="1014" height="310" alt="螢幕擷取畫面 2026-08-01 072845" src="https://github.com/user-attachments/assets/42bdab00-3dd2-434d-8edf-cfa99c37edcc" />
 
----
 
-### 分割結果視覺化（TP / FN / FP）
-
-下圖以顏色標示各區域的分割正確性，三個切面皆能有效分割目標區域，主要錯誤集中於邊緣區域的 FN（漏分）與少量 FP（誤分）：
-
-| 顏色 | 意義 |
-|------|------|
-| 🟩 綠色（TP） | 正確分割的目標區域 |
-| 🟦 藍色（FN） | 漏分的目標區域 |
-| 🟥 紅色（FP） | 誤判為目標的背景區域 |
-| 🟨 黃色（GT） | Ground Truth 位置 |
-
-<img width="1280" height="582" alt="分割結果視覺化" src="https://github.com/user-attachments/assets/699384ba-d137-46fb-9086-b7a337b1b98a" />
-
----
 
 ### Maximum Slice Area 最大面積切片結果
 
@@ -373,7 +359,8 @@ python kits23_nifti_viewer.py
 | Coronal | case 40 / slice 137 | 465 | 0.8291 | 0.9056 | 5208.3 | 5284.6 |
 | Sagittal | case 40 / slice 112 | 475 | 0.8147 | 0.8975 | 3066.1 | 3480.2 |
 
-<img width="3932" height="2030" alt="右腎最大面積切片結果" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
+<img width="958" height="469" alt="螢幕擷取畫面 2026-08-01 073007" src="https://github.com/user-attachments/assets/fbc838a1-8643-4945-9124-7ca7d023dd12" />
+
 
 #### 2. 左腎（Left Kidney）
 
@@ -383,7 +370,8 @@ python kits23_nifti_viewer.py
 | Coronal | case 39 / slice 137 | 470 | 0.8864 | 0.9196 | 5047.3 | 5284.8 |
 | Sagittal | case 37 / slice 90 | 360 | 0.8611 | 0.9053 | 4054.2 | 4095.0 |
 
-<img width="3932" height="2030" alt="左腎最大面積切片結果" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
+<img width="949" height="471" alt="螢幕擷取畫面 2026-08-01 073030" src="https://github.com/user-attachments/assets/c743ce51-99fd-4a6f-8393-34d4aa21e294" />
+
 
 ---
 <a name="參考資料"></a>
