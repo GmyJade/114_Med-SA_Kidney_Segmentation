@@ -24,7 +24,7 @@ A medical image segmentation project for kidney region analysis using Med-SA.
 
 整體而言，所提出的方法結合三切面分割與最大面積切片判定機制，建立完整的醫學影像分析流程，具備輔助臨床量化分析與後續系統擴充之應用潛力。
 
-> **注意**：本專案以 **coronal 切面**與**KiTS23資料集**為實作範例。如需使用其他切面，可參考相同架構自行調整資料載入與訓練設定。
+> **注意**：本專案以 **coronal 切面**與**KiTS23資料集、BTCV**為實作範例。如需使用其他切面，可參考相同架構自行調整資料載入與訓練設定。
 
 
 ---
@@ -72,8 +72,8 @@ Medical_SAM_Adapter_Coronal/
 <a name="資料集下載"></a>
 ## 📦 資料集下載
 
-本專案使用 [KiTS23](https://github.com/neheller/kits23) 資料集進行腎臟影像分割實驗。
-由於資料集檔案較大，不直接包含於此 repository，請依以下步驟自行下載。
+本專案使用 [KiTS23](https://github.com/neheller/kits23)以及[BTCV](https://www.synapse.org/Synapse:syn3193805/wiki/217752) 資料集進行腎臟影像分割實驗。
+由於KITS23資料集檔案較大，不直接包含於此 repository，請依以下步驟自行下載。
 
 ### 安裝 KiTS23 官方套件
 
@@ -145,14 +145,30 @@ dataset/KiTS23_for_MSA/
 ```
 
 ### 標籤定義
-
+KITS23
 | Label ID | 類別 |
 |----------|------|
 | 0 | Background（背景） |
 | 1 | Kidney（腎臟） |
 | 2 | Tumor（腫瘤） |
 | 3 | Cyst（囊腫） |
-
+BTCV
+| Label ID | 類別 |
+|----------|------|
+| 0 | Background（背景） |
+| 1 | Spleen（脾臟） |
+| 2 | Right Kidney（右腎） |
+| 3 | Left Kidney（左腎） |
+| 4 | Gallbladder（膽囊） |
+| 5 | Esophagus（食道） |
+| 6 | Liver（肝臟） |
+| 7 | Stomach（胃） |
+| 8 | Aorta（主動脈） |
+| 9 | Inferior Vena Cava（下腔靜脈） |
+| 10 | Portal Vein & Splenic Vein（門靜脈與脾靜脈） |
+| 11 | Pancreas（胰臟） |
+| 12 | Right Adrenal Gland（右側腎上腺） |
+| 13 | Left Adrenal Gland（左側腎上腺） |
 > **注意事項**
 > - 預設將最後 **10 筆**作為驗證集，其餘為訓練集，可在腳本內調整 `val_count`
 > - 若目標檔案已存在則自動跳過，重複執行不會覆蓋
@@ -300,6 +316,74 @@ python kits23_nifti_viewer.py
 | Coronal | 256 | 0.9466 | 0.9633 | 11600.9 | 11575.8 |
 | Sagittal | 391 | 0.9361 | 0.9585 | 5058.4 | 4942.8 |
 <img width="3932" height="2030" alt="圖片5" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
+
+## 📊 實驗結果
+> 以下結果基於 BTCV 資料集，訓練 500 epochs。
+
+### 訓練曲線（Training Loss & Validation Metrics）
+
+以下分別為右腎（Right Kidney）與左腎（Left Kidney）於三個切面訓練 500 epochs 的 Loss 與驗證指標：
+
+#### 1. 右腎（Right Kidney）
+
+| 切面 | Best Dice | Best IoU | Best Epoch |
+|------|-----------|----------|------------|
+| Axial | 0.9271 | 0.8641 | 440 |
+| Coronal | 0.9056 | 0.8291 | 465 |
+| Sagittal | 0.8975 | 0.8147 | 475 |
+
+<img width="1260" height="396" alt="右腎訓練曲線" src="https://github.com/user-attachments/assets/c12069e2-26a5-4a98-beec-826273ac6db7" />
+
+#### 2. 左腎（Left Kidney）
+
+| 切面 | Best Dice | Best IoU | Best Epoch |
+|------|-----------|----------|------------|
+| Axial | 0.9392 | 0.8855 | 440 |
+| Coronal | 0.9196 | 0.8864 | 470 |
+| Sagittal | 0.9053 | 0.8611 | 360 |
+
+<img width="1260" height="396" alt="左腎訓練曲線" src="https://github.com/user-attachments/assets/c12069e2-26a5-4a98-beec-826273ac6db7" />
+
+---
+
+### 分割結果視覺化（TP / FN / FP）
+
+下圖以顏色標示各區域的分割正確性，三個切面皆能有效分割目標區域，主要錯誤集中於邊緣區域的 FN（漏分）與少量 FP（誤分）：
+
+| 顏色 | 意義 |
+|------|------|
+| 🟩 綠色（TP） | 正確分割的目標區域 |
+| 🟦 藍色（FN） | 漏分的目標區域 |
+| 🟥 紅色（FP） | 誤判為目標的背景區域 |
+| 🟨 黃色（GT） | Ground Truth 位置 |
+
+<img width="1280" height="582" alt="分割結果視覺化" src="https://github.com/user-attachments/assets/699384ba-d137-46fb-9086-b7a337b1b98a" />
+
+---
+
+### Maximum Slice Area 最大面積切片結果
+
+根據 prediction mask 自動找出各切面面積最大的代表性切片，並與 Ground Truth 進行比對：
+
+#### 1. 右腎（Right Kidney）
+
+| 切面 | Case / Slice | Epoch | IoU | Dice | 預測面積 (mm²) | GT 面積 (mm²) |
+|------|--------------|-------|-----|------|----------------|---------------|
+| Axial | case 36 / slice 101 | 440 | 0.8641 | 0.9271 | 2406.1 | 2322.4 |
+| Coronal | case 40 / slice 137 | 465 | 0.8291 | 0.9056 | 5208.3 | 5284.6 |
+| Sagittal | case 40 / slice 112 | 475 | 0.8147 | 0.8975 | 3066.1 | 3480.2 |
+
+<img width="3932" height="2030" alt="右腎最大面積切片結果" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
+
+#### 2. 左腎（Left Kidney）
+
+| 切面 | Case / Slice | Epoch | IoU | Dice | 預測面積 (mm²) | GT 面積 (mm²) |
+|------|--------------|-------|-----|------|----------------|---------------|
+| Axial | case 36 / slice 127 | 440 | 0.8855 | 0.9392 | 2299.9 | 2201.0 |
+| Coronal | case 39 / slice 137 | 470 | 0.8864 | 0.9196 | 5047.3 | 5284.8 |
+| Sagittal | case 37 / slice 90 | 360 | 0.8611 | 0.9053 | 4054.2 | 4095.0 |
+
+<img width="3932" height="2030" alt="左腎最大面積切片結果" src="https://github.com/user-attachments/assets/6927669a-6b43-4709-8445-59c729440960" />
 
 ---
 <a name="參考資料"></a>
