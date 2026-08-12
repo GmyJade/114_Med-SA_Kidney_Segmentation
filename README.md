@@ -152,6 +152,7 @@ KITS23
 | 1 | Kidney（腎臟） |
 | 2 | Tumor（腫瘤） |
 | 3 | Cyst（囊腫） |
+
 BTCV
 | Label ID | 類別 |
 |----------|------|
