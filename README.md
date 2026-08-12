@@ -230,7 +230,7 @@ python3 train.py \
     -sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth \
     -image_size 1024 \
     -b 2 \
-    -dataset kits \
+    -dataset kits(或者decathlon) \
     -data_path "放實際的資料集路徑" \
     -num_sample 4 \
     -vis 5 \
@@ -255,7 +255,7 @@ python3 val.py \
     -weights "放自己訓練好的 best dice 權重" \
     -image_size 1024 \
     -b 2 \
-    -dataset kits \
+    -dataset kits(或者decathlon) \
     -data_path "放實際的資料集路徑" \
     -num_sample 4 \
     -vis 1 \
